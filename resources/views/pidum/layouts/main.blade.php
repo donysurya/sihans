@@ -49,7 +49,7 @@
                     <li class="nav-item mt-3">
                         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Laporan</h6>
                     </li>
-                    @if (auth()->guard('pidum')->user()->name == 'Petugas Pidum')
+                    @if (auth()->guard('pidum')->user()->role == 'pidum')
                     <li class="nav-item">
                         <a class="nav-link {{ Route::is('pidum.besuk', 'pidum.besuk.*') ? 'active' : '' }}" href="{{ route('pidum.besuk') }}">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -67,7 +67,7 @@
                             <span class="nav-link-text ms-1">Arsip Besuk</span>
                         </a>
                     </li>
-                    @if (auth()->guard('pidum')->user()->name == 'Petugas Pidum')
+                    @if (auth()->guard('pidum')->user()->role == 'pidum')
                     <li class="nav-item">
                         <a class="nav-link {{ Route::is('pidum.archive.user', 'pidum.archive.user.*') ? 'active' : '' }}" href="{{ route('pidum.archive.user') }}">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
