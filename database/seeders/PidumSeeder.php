@@ -16,6 +16,14 @@ class PidumSeeder extends Seeder
     {
         $pidums = [
             [
+                'name' => 'Petugas Pidum Utama',
+                'email' => 'pidum@sihans.net',
+                'password' => Hash::make('QWEasdZXC_1209'),
+                'phone' => '0811-5187-878',
+                'address' => 'Jl. Jend. Ahmad Yani No.Km.10, Tamiang Layang, Kec. Dusun Tim., Kabupaten Barito Timur, Kalimantan Tengah 73611',
+                'role' => 'pidum'
+            ],
+            [
                 'name' => 'Petugas Pidum',
                 'email' => 'pidum@kejaksaan.go.id',
                 'password' => Hash::make('QWEasdZXC_1209'),
