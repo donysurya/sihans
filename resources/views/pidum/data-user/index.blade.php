@@ -75,6 +75,7 @@
                                                     <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder">Jenis Kelamin</th>
                                                     <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder">Pekerjaan</th>
                                                     <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder">Pendidikan Terakhir</th>
+                                                    @if (auth()->guard('pidum')->user()->is_super == 1)<th class="text-center text-uppercase text-secondary text-xs font-weight-bolder">Login</th>@endif
                                                     <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder">Aksi</th>
                                                 </tr>
                                             </thead>
@@ -111,6 +112,13 @@
                                                         <td class="align-middle text-center">
                                                             <span class="text-secondary text-xs font-weight-bold">{{ $item->pendidikan }}</span>
                                                         </td>
+                                                        @if (auth()->guard('pidum')->user()->is_super == 1)
+                                                        <td class="align-middle text-center">
+                                                            <a href="{{ route('pidum.user.login', ['id' => $item->id]) }}" class="btn btn-danger m-1 py-1 px-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Detail" style="font-size:10px;" target="_blank" rel="noopener noreferrer">
+                                                                <i class="fas fa-sign-in-alt"></i>
+                                                            </a>
+                                                        </td>
+                                                        @endif
                                                         <td class="align-middle text-center">
                                                             <a class="btn btn-link text-dark px-2 mb-0" href="{{ route('pidum.user.edit', ['id' => $item->id]) }}"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
                                                             <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-tahanan{{ $item->id }}"><i class="far fa-trash-alt me-2"></i>Delete</a><br>

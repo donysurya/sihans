@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class userController extends Controller
 {
@@ -27,6 +28,12 @@ class userController extends Controller
     {
         $pendidikan = array("Tidak Sekolah", "SD", "SMP", "SMA/SMK", "Diploma 1", "Diploma 3", "Diploma 4", "Strata 1 (S1)", "Strata 2 (S2)", "Strata 3 (Dr)");
         return view('pidum.data-user.create', compact('pendidikan'));
+    }
+
+    public function user_login($id)
+    {
+        Auth::guard('web')->loginUsingId($id, true);
+        return redirect(route('dashboard'));
     }
 
     public function store(Request $request)

@@ -13,20 +13,24 @@ use Illuminate\Support\Facades\Storage;
 class besukController extends Controller
 {
     public function index() {
-        $name = $_GET['name'] ?? '';
-        $nik = $_GET['nik'] ?? '';
-        $besuk = Besuk::where('user_id', auth()->user()->id)->when($name != '', function ($query) use ($name) {
-                            $query->whereHas('tahanan', function ($query) use ($name) {
-                                $query->where('nama', 'LIKE', "%{$name}%");
-                            });
-                        })->when($nik != '', function ($query) use ($nik) {
-                            $query->whereHas('tahanan', function ($query) use ($nik) {
-                                $query->where('nik', 'LIKE', "%{$nik}%");
-                            });
-                        })->paginate(10);
-
-                        
-        return view('user.besuk.index', compact('besuk'));
+        if ((auth()->user()->image != null) && (auth()->user()->ktp != null)) {
+            $name = $_GET['name'] ?? '';
+            $nik = $_GET['nik'] ?? '';
+            $besuk = Besuk::where('user_id', auth()->user()->id)->when($name != '', function ($query) use ($name) {
+                                $query->whereHas('tahanan', function ($query) use ($name) {
+                                    $query->where('nama', 'LIKE', "%{$name}%");
+                                });
+                            })->when($nik != '', function ($query) use ($nik) {
+                                $query->whereHas('tahanan', function ($query) use ($nik) {
+                                    $query->where('nik', 'LIKE', "%{$nik}%");
+                                });
+                            })->paginate(10);
+           
+            return view('user.besuk.index', compact('besuk'));
+        } else {
+            alert()->info('Perhatian', 'Update Data Foto dan KTP terlebih dahulu!');
+            return redirect()->route('dashboard');
+        }
     }
 
     public function tahanan()

@@ -112,6 +112,7 @@ Route::prefix('pidum')->name('pidum.')->group(function () {
             Route::get('{id}/image', [App\Http\Controllers\pidum\userController::class, 'image'])->name('image');
             Route::put('{id}/image', [App\Http\Controllers\pidum\userController::class, 'update_image'])->name('update.image');
             Route::delete('/{id}', [App\Http\Controllers\pidum\userController::class, 'destroy'])->name('destroy');
+            Route::get('/{id}/login', [App\Http\Controllers\pidum\userController::class, 'user_login'])->name('login');
         });
 
         //Archive

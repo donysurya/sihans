@@ -25,7 +25,7 @@
             <div class="row gx-4">
                 <div class="col-auto">
                     <div class="avatar avatar-xl position-relative overflow-hidden">
-                        <img src="{{Storage::url($tahanan->image)}}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                        <img src="{{ asset('tahanan/'.$tahanan->nama.'/'.$tahanan->image) }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
                     </div>
                 </div>
                 <div class="col-auto my-auto">

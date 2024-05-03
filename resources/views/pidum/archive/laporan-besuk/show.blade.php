@@ -132,6 +132,10 @@
                                                             <span class="btn-inner--icon"><i class="far fa-file-pdf me-2"></i></span>
                                                             <span class="btn-inner--text">T-10</span>
                                                         </a>
+                                                        <a href="{{ asset('file/'.$besuk->t10) }}" target="_blank" rel="noopener noreferrer" class="btn btn-icon btn-3 btn-secondary mb-0" type="button">
+                                                            <span class="btn-inner--icon"><i class="far fa-file-pdf me-2"></i></span>
+                                                            <span class="btn-inner--text">T-10 - CMS</span>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -203,8 +207,8 @@
                                                     <div class="form-group">
                                                         <label for="hubungan" class="form-control-label">Identitas</label>
                                                         <div class="row">
-                                                            <div class="col-md-auto"><img src="{{Storage::url($besuk->user->image)}}" alt="{{$besuk->user->name}}" width="150"></div>
-                                                            <div class="col-md-auto"><img src="{{Storage::url($besuk->user->ktp)}}" alt="{{$besuk->user->name}}" width="250"></div>
+                                                            <div class="col-md-auto"><img src="{{ asset('user/'.$besuk->user->name.'/'.$besuk->user->image) }}" alt="{{$besuk->user->name}}" width="150"></div>
+                                                            <div class="col-md-auto"><img src="{{ asset('user/'.$besuk->user->name.'/'.$besuk->user->ktp) }}" width="250"></div>
                                                         </div>
                                                     </div>
                                                 </div>

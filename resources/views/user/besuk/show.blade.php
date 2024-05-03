@@ -54,7 +54,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="keperluan" class="form-control-label">Status Kunjungan</label>
-                                                <span class="badge bg-gradient-warning">{{$besuk->status}}</span>
+                                                <span class="badge bg-gradient-warning">{{$besuk->status ?? ''}}</span>
                                             </div>
                                         </div>
                                         @if($besuk->status=='Selesai')
@@ -69,6 +69,10 @@
                                                         <a href="{{ route('besuk.cetak', ['id' => $besuk->id]) }}" target="_blank" rel="noopener noreferrer" class="btn btn-icon btn-3 btn-info mb-0" type="button">
                                                             <span class="btn-inner--icon"><i class="far fa-file-pdf me-2"></i></span>
                                                             <span class="btn-inner--text">T-10</span>
+                                                        </a>
+                                                        <a href="{{ asset('file/'.$besuk->t10) }}" target="_blank" rel="noopener noreferrer" class="btn btn-icon btn-3 btn-secondary mb-0" type="button">
+                                                            <span class="btn-inner--icon"><i class="far fa-file-pdf me-2"></i></span>
+                                                            <span class="btn-inner--text">T-10 - CMS</span>
                                                         </a>
                                                     </div>
                                                 </div>

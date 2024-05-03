@@ -152,9 +152,9 @@
                 <td class="pb-0 text-center" width="50%">
                     <p class="font-weight-bold mb-0">Tamiang Layang, {{date('d M Y', strtotime('now'));}}</p>
                     <p class="font-weight-bold mb-0 text-uppercase">kepala kejaksaan negeri barito timur</p>
-                    <p class="mb-0">.</p>
-                    <p class="mb-0">.</p>
-                    <p class="mb-0">.</p>
+                    <div>
+                        <img src="{{public_path('/img/ttd.png')}}" alt="" width="130" class="my-3">
+                    </div>
                     <u class="font-weight-bold mb-0 text-uppercase">daniel panannangan, s.h., m.h.</u>
                     <p class="font-weight-bold mb-0 text-uppercase">jaksa madya nip. 19741129 200003 1 001</p>
                 </td>

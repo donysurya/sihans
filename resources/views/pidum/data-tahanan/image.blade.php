@@ -53,7 +53,7 @@
                                     <div class="row align-items-center">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <img src="{{Storage::url($tahanan->image)}}" alt="{{$tahanan->nama}}" width="240px">
+                                                <img src="{{ asset('tahanan/'.$tahanan->nama.'/'.$tahanan->image) }}" alt="{{$tahanan->nama}}" width="240px">
                                             </div>
                                         </div>
                                     </div>
@@ -80,6 +80,7 @@
                                                     <div class="imgPreview"> </div>
                                                 </div>
                                                 <div class="form-group">
+                                                    <input type="hidden" name="nama" value="{{ $tahanan->nama }}">
                                                     <input class="form-control @error('file') is-invalid @enderror" type="file" name="file" id="images" value="{{ $tahanan->image }}" placeholder="Upload File">
                                                     <label for="file" class="form-control-label mt-1">Upload Foto Tahanan (*jpg,jpeg,png,bmp,webp).<br><span class="text-danger"><i class="fa fa-info-circle me-2"></i>Maksimum Size: 2 MB.</span></label>
                                                     @error('file')

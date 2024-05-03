@@ -37,7 +37,7 @@ class tahananController extends Controller
             'pekerjaan' => 'required',
             'alamat' => 'required',
             'perkara' => 'required',
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp,bmp|max:2000',
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp,bmp|max:2048',
             'tempat_lahir' => 'required',
             'tgl_lahir' => 'required',
             'jenis_kelamin' => 'required',
@@ -48,10 +48,17 @@ class tahananController extends Controller
 
         try {
             DB::beginTransaction();
-            $path = Storage::putFile(
-                'public/tahanan',
-                $request->file('file'),
-            );
+            // $path = Storage::putFile(
+            //     'public/tahanan',
+            //     $request->file('file'),
+            // );
+
+            //File Upload
+            $file = $request->file('file');
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $tujuan_upload = 'tahanan/'.$request->nama;
+            $file->move($tujuan_upload,$nama_file);
+
             $tahanan = Tahanan::create([
                 'nama' => $request->nama,
                 'nik' => $request->nik,
@@ -59,7 +66,7 @@ class tahananController extends Controller
                 'pekerjaan' => $request->pekerjaan,
                 'alamat' => $request->alamat,
                 'perkara' => $request->perkara,
-                'image' => $path,
+                'image' => $nama_file,
                 'tempat_lahir' => $request->tempat_lahir,
                 'tgl_lahir' => $request->tgl_lahir,
                 'jenis_kelamin' => $request->jenis_kelamin,
@@ -144,18 +151,25 @@ class tahananController extends Controller
     public function update_image(Request $request, $id)
     {
         $request->validate([
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp,bmp|max:2000',
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp,bmp|max:2048',
         ]);
 
         try {
             DB::beginTransaction();
-            $path = Storage::putFile(
-                'public/tahanan',
-                $request->file('file'),
-            );
+            // $path = Storage::putFile(
+            //     'public/tahanan',
+            //     $request->file('file'),
+            // );
+
+            //File Upload
+            $file = $request->file('file');
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $tujuan_upload = 'tahanan/'.$request->nama;
+            $file->move($tujuan_upload,$nama_file);
+
             $admin = auth()->guard('pidum')->user()->id;
             Tahanan::where('id', $id)->update([
-                'image' => $path,
+                'image' => $nama_file,
                 'updated_by' => $admin,
             ]);
             DB::commit();

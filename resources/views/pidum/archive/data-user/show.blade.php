@@ -25,7 +25,7 @@
             <div class="row gx-4">
                 <div class="col-auto d-flex align-items-center">
                     <div class="avatar avatar-xl position-relative overflow-hidden">
-                        <img src="{{ $user->image != null ? Storage::url($user->image) : asset('argon/img/tim.png') }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                        <img src="{{ $user->image != null ? asset('user/'.$user->name.'/'.$user->image) : asset('argon/img/tim.png') }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
                     </div>
                 </div>
                 <div class="col-auto">
@@ -108,7 +108,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="ktp" class="form-control-label">Identitas Pengunjung (KTP)</label><br>
-                                                <img src="{{ $user->ktp != null ? Storage::url($user->ktp) : asset('argon/img/ktp.png') }}" alt="{{$user->name}}" width="240px">
+                                                <img src="{{ $user->ktp != null ? asset('user/'.$user->name.'/'.$user->ktp) : asset('argon/img/ktp.png') }}" alt="{{$user->name}}" width="240px">
                                             </div>
                                         </div>
                                     </div>

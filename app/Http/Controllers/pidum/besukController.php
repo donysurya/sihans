@@ -47,16 +47,25 @@ class besukController extends Controller
             'tgl_kunjungan' => 'required',
             'start_time' => 'required',
             'end_time' => 'required',
+            'file' => 'required|file|max:2048'
         ]);
 
         try {
             DB::beginTransaction();
+
+            //File Upload
+            $file = $request->file('file');
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $tujuan_upload = 'file';
+            $file->move($tujuan_upload,$nama_file);
+
             Besuk::where('id', $id)->update([
                 'status' => $request->status,
                 'nomor_surat' => $request->nomor_surat,
                 'tgl_kunjungan' => $request->tgl_kunjungan,
                 'start_time' => $request->start_time,
                 'end_time' => $request->end_time,
+                't10' => $nama_file,
             ]);
             DB::commit();
             alert()->success('Success', 'Data Berhasil Di Konfirmasi');

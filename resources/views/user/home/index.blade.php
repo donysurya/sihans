@@ -166,7 +166,7 @@
                     <div class="card ">
                         <div class="card-header p-3 d-flex justify-content-between align-items-center">
                             <p class="font-weight-bold mb-0"><i class="fas fa-user-check me-2"></i>Update Profile</p>
-                            <a href="#" class="text-danger"><i class="fas fa-edit"></i></a>
+                            <a href="{{route('setting.index')}}" class="text-danger"><i class="fas fa-edit"></i></a>
                         </div>
                         <div class="card-body pt-0 pb-3">
                             <div class="row">

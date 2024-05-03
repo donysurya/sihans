@@ -22,17 +22,25 @@ class settingController extends Controller
     public function update_image(Request $request, $id)
     {
         $request->validate([
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg,bmp,webp|max:2000',
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg,bmp,webp|max:2048',
         ]);
 
         try {
             DB::beginTransaction();
-            $path = Storage::putFile(
-                'public/pengunjung/images',
-                $request->file('file'),
-            );
+            // $path = Storage::putFile(
+            //     'public/pengunjung/images',
+            //     $request->file('file'),
+            // );
+
+            //File Upload
+            $file = $request->file('file');
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $nama_user = auth()->user()->name;
+            $tujuan_upload = 'user/'.$nama_user;
+            $file->move($tujuan_upload,$nama_file);
+
             User::where('id', $id)->update([
-                'image' => $path,
+                'image' => $nama_file,
             ]);
             DB::commit();
             alert()->success('Success', 'Foto Profil Berhasil Diubah');
@@ -52,12 +60,20 @@ class settingController extends Controller
 
         try {
             DB::beginTransaction();
-            $path = Storage::putFile(
-                'public/pengunjung/ktp',
-                $request->file('ktp'),
-            );
+            // $path = Storage::putFile(
+            //     'public/pengunjung/ktp',
+            //     $request->file('ktp'),
+            // );
+
+            //File Upload
+            $file = $request->file('ktp');
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $nama_user = auth()->user()->name;
+            $tujuan_upload = 'user/'.$nama_user;
+            $file->move($tujuan_upload,$nama_file);
+
             User::where('id', $id)->update([
-                'ktp' => $path,
+                'ktp' => $nama_file,
             ]);
             DB::commit();
             alert()->success('Success', 'Foto KTP Berhasil Diubah');

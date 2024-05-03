@@ -108,9 +108,9 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="d-flex flex-column justify-content-center">
-                                                                    <h6 class="mb-0 text-sm">{{ $item->tahanan->nama }}</h6>
-                                                                    <h6 class="mb-0 text-sm">NIK: {{ $item->tahanan->nik }}</h6>
-                                                                    <h6 class="mb-0 text-sm">Reg. Tahanan: {{ $item->tahanan->no_tahanan }}</h6>
+                                                                    <h6 class="mb-0 text-sm">{{ $item->tahanan->nama ?? '' }}</h6>
+                                                                    <h6 class="mb-0 text-sm">NIK: {{ $item->tahanan->nik ?? '' }}</h6>
+                                                                    <h6 class="mb-0 text-sm">Reg. Tahanan: {{ $item->tahanan->no_tahanan ?? ''}}</h6>
                                                                 </div>
                                                             </div>
                                                         </td>

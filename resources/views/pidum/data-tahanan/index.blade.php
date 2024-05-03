@@ -108,7 +108,7 @@
                                                             <span class="text-secondary text-xs font-weight-bold">{{ $item->pekerjaan }}</span>
                                                         </td>
                                                         <td class="align-middle text-center">
-                                                            <img src="{{Storage::url($item->image)}}" alt="{{$item->nama}}" width="120px">
+                                                            <img src="{{ asset('tahanan/'.$item->nama.'/'.$item->image) }}" alt="{{$item->nama}}" width="120px">
                                                             <a href="{{ route('pidum.tahanan.image', ['id' => $item->id]) }}" class="btn btn-success m-1 py-1 px-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Update Foto Tahanan" style="font-size:10px;">
                                                                 <i class="fa fa-refresh"></i>
                                                             </a>

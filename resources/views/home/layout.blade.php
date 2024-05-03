@@ -15,6 +15,7 @@
         <link href="{{ asset('argon/css/nucleo-svg.css') }}" rel="stylesheet" />
         <!-- CSS Files -->
         <link id="pagestyle" href="{{ asset('argon/css/argon-dashboard.css?v=2.0.4') }}" rel="stylesheet" />
+        <link rel="stylesheet" href="{{ asset('css/loader.css?v2') }}" />
 
         <!-- Another Custom Style -->
         @stack('css') 
@@ -25,6 +26,12 @@
     </head>
 
     <body class="">
+        <!-- Preloader -->
+        <div id="loader-wrapper">
+            <div id="loader"></div>
+            <div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div>
+        </div>
 
         <!-- Content -->
         @yield('modal')
@@ -63,6 +70,8 @@
 
         <!-- Another Custom JS -->
         @stack('bottomscript')
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="{{ asset('js/main.js?v2') }}"></script>
     </body>
 
 </html>

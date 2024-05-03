@@ -210,7 +210,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group text-center">
                                                         @if(auth()->user()->image != null)
-                                                            <img src="{{Storage::url(auth()->user()->image)}}" alt="{{auth()->user()->name}}" width="240px">
+                                                            <img src="{{ asset('user/'.auth()->user()->name.'/'.auth()->user()->image) }}" alt="{{auth()->user()->name}}" width="240px">
                                                         @else
                                                             <img src="{{ asset('argon/img/tim.png') }}" alt="Foto" width="50%">
                                                         @endif
@@ -277,7 +277,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group text-center">
                                                         @if(auth()->user()->ktp != null)
-                                                            <img src="{{Storage::url(auth()->user()->ktp)}}" alt="{{auth()->user()->ktp}}" width="240px">
+                                                            <img src="{{ asset('user/'.auth()->user()->name.'/'.auth()->user()->ktp) }}" alt="{{auth()->user()->ktp}}" width="240px">
                                                         @else
                                                             <img src="{{ asset('argon/img/ktp.png') }}" alt="Foto" width="50%">
                                                         @endif

@@ -3,9 +3,16 @@
 @section('title', 'Lihat Data Kunjungan | Petugas Pidum')
 
 @push('css')
+    <style>
+        .imgPreview img {
+            padding: 8px;
+            max-width: 150px;
+        } 
+    </style>
 @endpush
 
 @push('headscript')
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 @endpush
 
 @section('breadcrumb')
@@ -55,7 +62,7 @@
                                         </div>
                                         @if($besuk->status!='Selesai')
                                             <div class="col-md-12 mb-3">
-                                                <form action="{{ route('pidum.besuk.update', ['id' => $besuk->id]) }}" method="post">
+                                                <form action="{{ route('pidum.besuk.update', ['id' => $besuk->id]) }}" method="post" enctype="multipart/form-data">
                                                     @csrf
                                                     @method('PUT')
                                                     <div class="row align-items-center">
@@ -71,7 +78,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row align-items-center">
+                                                    <div class="row">
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label for="tgl_kunjungan" class="form-control-label mt-1">Tanggal Kunjungan</label>
@@ -116,6 +123,21 @@
                                                             </div>
                                                             <button type="submit" class="btn btn-primary btn-md ms-auto my-2"><i class="fa fa-edit me-2"></i>Perbaharui Data</button>
                                                         </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group mb-1">
+                                                                <div class="imgPreview"> </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="file" class="form-control-label mt-2">Upload Foto T-10 (*jpg,jpeg,png,bmp,webp).</label>
+                                                                <input class="form-control @error('file') is-invalid @enderror" type="file" name="file" id="images" value="{{ old('file') }}" placeholder="Upload File">
+                                                                <label for="file" class="form-control-label mt-1"><span class="text-danger"><i class="fa fa-info-circle me-2"></i>Maksimum Size: 2 MB.</span></label>
+                                                                @error('file')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </form>
                                             </div>
@@ -131,6 +153,10 @@
                                                         <a href="{{ route('pidum.besuk.cetak', ['id' => $besuk->id]) }}" target="_blank" rel="noopener noreferrer" class="btn btn-icon btn-3 btn-info mb-0" type="button">
                                                             <span class="btn-inner--icon"><i class="far fa-file-pdf me-2"></i></span>
                                                             <span class="btn-inner--text">T-10</span>
+                                                        </a>
+                                                        <a href="{{ asset('file/'.$besuk->t10) }}" target="_blank" rel="noopener noreferrer" class="btn btn-icon btn-3 btn-secondary mb-0" type="button">
+                                                            <span class="btn-inner--icon"><i class="far fa-file-pdf me-2"></i></span>
+                                                            <span class="btn-inner--text">T-10 - CMS</span>
                                                         </a>
                                                     </div>
                                                 </div>
@@ -203,8 +229,8 @@
                                                     <div class="form-group">
                                                         <label for="hubungan" class="form-control-label">Identitas</label>
                                                         <div class="row">
-                                                            <div class="col-md-auto"><img src="{{Storage::url($besuk->user->image)}}" alt="{{$besuk->user->name}}" width="150"></div>
-                                                            <div class="col-md-auto"><img src="{{Storage::url($besuk->user->ktp)}}" alt="{{$besuk->user->name}}" width="250"></div>
+                                                            <div class="col-md-auto"><img src="{{ asset('user/'.$besuk->user->name.'/'.$besuk->user->image) }}" alt="{{$besuk->user->name}}" width="150"></div>
+                                                            <div class="col-md-auto"><img src="{{ asset('user/'.$besuk->user->name.'/'.$besuk->user->ktp) }}" alt="{{$besuk->user->name}}" width="250"></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -316,5 +342,25 @@
         $(document).ready(function () {
             $('.ckeditor').ckeditor();
         });
+    </script>
+
+    <script>
+        $(function() {
+            var imgPreview = function(input, imgPreviewPlaceholder) {
+                if (input.files) {
+                    var filesAmount = input.files.length;
+                    for (i = 0; i < filesAmount; i++) {
+                        var reader = new FileReader();
+                        reader.onload = function(event) {
+                            $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(imgPreviewPlaceholder);
+                        }
+                        reader.readAsDataURL(input.files[i]);
+                    }
+                }
+            };
+            $('#images').on('change', function() {
+                imgPreview(this, 'div.imgPreview');
+            });
+        });    
     </script>
 @endpush
