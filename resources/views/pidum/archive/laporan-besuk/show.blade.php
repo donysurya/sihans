@@ -207,8 +207,16 @@
                                                     <div class="form-group">
                                                         <label for="hubungan" class="form-control-label">Identitas</label>
                                                         <div class="row">
-                                                            <div class="col-md-auto"><img src="{{ asset('user/'.$besuk->user->name.'/'.$besuk->user->image) }}" alt="{{$besuk->user->name}}" width="150"></div>
-                                                            <div class="col-md-auto"><img src="{{ asset('user/'.$besuk->user->name.'/'.$besuk->user->ktp) }}" width="250"></div>
+                                                            @if(($besuk->user->image==null) && ($besuk->user->ktp==null))
+                                                                <div class="col-md-auto">
+                                                                    <div class="alert alert-warning" role="alert">
+                                                                        <strong>Warning!</strong> Pengunjung belum mengupload <strong>foto dan identitas ktp!</strong>
+                                                                    </div>
+                                                                </div>
+                                                            @else
+                                                                <div class="col-md-auto"><img src="{{ asset('user/'.$besuk->user->name.'/'.$besuk->user->image) }}" alt="{{$besuk->user->name}}" width="150"></div>
+                                                                <div class="col-md-auto"><img src="{{ asset('user/'.$besuk->user->name.'/'.$besuk->user->ktp) }}" alt="{{$besuk->user->name}}" width="250"></div>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
